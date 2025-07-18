@@ -9,11 +9,10 @@ This project is a **microservices-based fitness tracking system** built using **
 
 ### 2. `user-service`
 - Manages user information and validation
-- Registered with Eureka for service discovery (optional)
+- Registered with Eureka for service discovery 
 
 ### 3. `ai-service`
 - Listens to `activity.queue`
-- Processes activities using custom logic or ML models
 - Sends back personalized recommendations (future scope)
 
 ## 🔧 Technologies Used
@@ -22,7 +21,7 @@ This project is a **microservices-based fitness tracking system** built using **
 - **Spring Web & WebClient**
 - **Spring AMQP (RabbitMQ)**
 - **RabbitMQ**
-- **Eureka (Optional)**
+- **Eureka **
 - **Gradle**
 
 ⚠️ This project is currently under active development.
