@@ -3,7 +3,7 @@ package com.fitness.aiservice.Controller;
 import com.fitness.aiservice.model.Recommendation;
 import com.fitness.aiservice.service.ServiceRecommendation;
 import lombok.AllArgsConstructor;
-import org.apache.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +21,11 @@ public class RecommendationController {
 
     @GetMapping("user/{userId}")
     public ResponseEntity<List<Recommendation>> getUserRecommendation(@PathVariable String userId) {
-        return   ResponseEntity.ok(serviceRecommendation.getUserRecommendation(userId));
+        return  serviceRecommendation.getUserRecommendation(userId);
     }
 
     @GetMapping("activity/{activityId}")
     public ResponseEntity<Recommendation> getActivityRecommendation(@PathVariable String activityId) {
-        return  ResponseEntity.ok(serviceRecommendation.getActivityRecommendation(activityId));
+        return  serviceRecommendation.getActivityRecommendation(activityId);
     }
 }
