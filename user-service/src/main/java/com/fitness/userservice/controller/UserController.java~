@@ -21,10 +21,17 @@ public class UserController {
         return userService.getUserProfile(userId);
     }
 
-    @PosMapping("/register")
+    @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody RegisterRequest request) {
         return new ResponseEntity<UserResponse>(userService.register(request),HttpStatus.CREATED);
     }
+
+    @GetMapping("/{userId}/validate")
+    public ResponseEntity<Boolean> validateUser(@PathVariable String userId)
+    {
+        return userService.getUserProfile(userId);
+    }
+
 
 
 }

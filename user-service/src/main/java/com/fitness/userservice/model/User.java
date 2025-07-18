@@ -24,7 +24,7 @@ public class User {
     private String firstname;
     private String lastname;
     @Enumerated(EnumType.STRING)
-    private UserRole role=UserRole.USER;
+    private UserRole role=UserRole.ADMIN;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp

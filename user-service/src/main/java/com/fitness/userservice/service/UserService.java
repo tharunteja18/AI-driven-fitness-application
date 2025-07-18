@@ -5,6 +5,7 @@ import com.fitness.userservice.dto.RegisterRequest;
 import com.fitness.userservice.dto.UserResponse;
 import com.fitness.userservice.model.User;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-
+@Slf4j
 public class UserService {
     @Autowired
     private UserRepository userRepository;
@@ -22,12 +23,12 @@ public class UserService {
         User user =userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User not found"));
 
         UserResponse userResponse = new UserResponse();
+
         userResponse.setId(user.getId());
         userResponse.setEmail(user.getEmail());
         userResponse.setPassword(user.getPassword());
         userResponse.setFirstname(user.getFirstname());
         userResponse.setLastname(user.getLastname());
-        userResponse.setRole(user.getRole());
         userResponse.setCreatedAt(user.getCreatedAt());
         userResponse.setUpdatedAt(user.getUpdatedAt());
         return new ResponseEntity<UserResponse>(userResponse, HttpStatus.OK);
@@ -41,6 +42,7 @@ public class UserService {
         {
             throw new RuntimeException("User already exists");
         }
+
         User user = new User();
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
@@ -50,14 +52,20 @@ public class UserService {
         User savedUser =  userRepository.save(user);
 
         UserResponse userResponse = new UserResponse();
+
         userResponse.setId(savedUser.getId());
         userResponse.setEmail(savedUser.getEmail());
         userResponse.setPassword(savedUser.getPassword());
         userResponse.setFirstname(savedUser.getFirstname());
         userResponse.setLastname(savedUser.getLastname());
-        userResponse.setRole(savedUser.getRole());
         userResponse.setCreatedAt(savedUser.getCreatedAt());
         userResponse.setUpdatedAt(savedUser.getUpdatedAt());
+
         return userResponse;
+    }
+
+    public Boolean exitByUserId(String userId) {
+        log.info("Calling User Validation API for userId: {}",userId);
+        return userRepository.existsById(userId);
     }
 }
