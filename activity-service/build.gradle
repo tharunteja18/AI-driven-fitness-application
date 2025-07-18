@@ -35,6 +35,13 @@ dependencies {
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 	// adding eureka client
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+	// web client
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	testImplementation 'io.projectreactor:reactor-test'
+
+	// RabbitMQ
+	implementation 'org.springframework.boot:spring-boot-starter-amqp'
+	testImplementation 'org.springframework.amqp:spring-rabbit-test'
 }
 
 dependencyManagement {

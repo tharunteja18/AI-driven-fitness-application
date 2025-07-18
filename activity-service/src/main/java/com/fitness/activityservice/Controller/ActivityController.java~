@@ -26,7 +26,7 @@ public class ActivityController {
     }
 
     // Fetch all activities by userId
-    // one user can have multiple activities
+    // single user can have multiple activities
     @GetMapping
     public ResponseEntity<List<ActivityResponse>> getUserActivities(@RequestHeader("X-User-ID") String userId)
     {
