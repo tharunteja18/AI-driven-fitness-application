@@ -21,7 +21,7 @@ This project is a **microservices-based fitness tracking system** built using **
 - **Spring Web & WebClient**
 - **Spring AMQP (RabbitMQ)**
 - **RabbitMQ**
-- **Eureka **
+- **Eureka**
 - **Gradle**
 
 ⚠️ This project is currently under active development.
