@@ -1,6 +1,8 @@
+server:
+  port: 8084
 spring:
   application:
-      name: ai-service
+    name: ai-service
 
   data:
     mongodb:
@@ -13,24 +15,20 @@ spring:
     username: guest
     password: guest
 
-server:
-  port: 8090
-
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka
 
-
 rabbitmq:
   exchange:
     name: fitness.exchange
   queue:
-    name : activity.queue
+    name: activity.queue
   routing:
-    key : activity.tracking
+    key: activity.tracking
 
 gemini:
   api:
-    url: ${GEMINI_API_URL}
-    key: ${GEMINI_API_KEY}
+    url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent
+    key: AIzaSyBz1Ls11_ZsocBFcOuK0k7e654Xhi5KN-k

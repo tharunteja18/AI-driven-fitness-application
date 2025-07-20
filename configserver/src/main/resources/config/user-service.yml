@@ -1,11 +1,11 @@
-
+server:
+  port: 8091
 
 spring:
   application:
     name: user-service
-
   datasource:
-#    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/fitness_user_db
     username: root
     password: root123
@@ -13,10 +13,8 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-#   database-platform: org.hibernate.dialect.MySQLDialect
+    database-platform: org.hibernate.dialect.MySQLDialect
 
-server:
-  port: 8091
 
 eureka:
   client:
