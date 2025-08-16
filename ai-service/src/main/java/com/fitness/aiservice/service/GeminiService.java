@@ -20,8 +20,10 @@ public class GeminiService {
     }
 
     public String getAnswer(String question) {
-        Map<String, Object> requestBody = Map.of(
-                "contents", List.of(
+        Map<String, Object> requestBody = Map.of
+        (
+                "contents", List.of
+                (
                         Map.of(
                                 "parts", List.of(
                                         Map.of("text", question)

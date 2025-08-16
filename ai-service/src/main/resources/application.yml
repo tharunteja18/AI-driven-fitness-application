@@ -28,6 +28,7 @@ rabbitmq:
   routing:
     key: activity.tracking
 
+# let us hardcode this for now
 gemini:
   api:
     url: https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent
