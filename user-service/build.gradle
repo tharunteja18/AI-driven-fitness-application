@@ -37,8 +37,12 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
-    //adding config client dependency
-//    implementation 'org.springframework.cloud:spring-cloud-starter-config'
+    //      adding config client dependency
+    //      implementation 'org.springframework.cloud:spring-cloud-starter-config'
+
+    // Adding Grafana
+//    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+//    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 
 
 }

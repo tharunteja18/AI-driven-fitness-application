@@ -45,6 +45,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	testImplementation 'io.projectreactor:reactor-test'
 
+	// Adding Grafana
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
 
 }
 

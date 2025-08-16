@@ -26,3 +26,14 @@ rabbitmq:
   routing:
     key : activity.tracking
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    prometheus:
+      enable : true
+
+
+

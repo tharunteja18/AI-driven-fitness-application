@@ -45,7 +45,7 @@ public class ActivityService
                 .build();
 
         Activity savedActivity=activityRepository.save(activity);
-        // publish to rabbitmq queue for ai procesing
+        // publish to rabbitmq queue for AI processing
         try {
             rabbitTemplate.convertAndSend(exchange,routingKey,savedActivity);
         }
