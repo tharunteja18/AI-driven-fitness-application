@@ -15,23 +15,21 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private UserService userService;
+
     @GetMapping("/{userId}")
-    public ResponseEntity<UserResponse> getUserProfile(@PathVariable String userId)
-    {
+    public ResponseEntity<UserResponse> getUserProfile(@PathVariable String userId) {
         return userService.getUserProfile(userId);
     }
 
     @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody RegisterRequest request) {
-        return new ResponseEntity<UserResponse>(userService.register(request),HttpStatus.CREATED);
+        return new ResponseEntity<UserResponse>(userService.register(request), HttpStatus.CREATED);
     }
 
     @GetMapping("/{userId}/validate")
-    public ResponseEntity<Boolean> validateUser(@PathVariable String userId)
-    {
-        return new ResponseEntity<Boolean>(userService.exitByUserId(userId),HttpStatus.OK);
+    public ResponseEntity<Boolean> validateUser(@PathVariable String userId) {
+        return new ResponseEntity<Boolean>(userService.exitByUserId(userId), HttpStatus.OK);
     }
-
 
 
 }

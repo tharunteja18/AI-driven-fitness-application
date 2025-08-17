@@ -4,9 +4,7 @@ import com.fitness.activityservice.dto.ActivityRequest;
 import com.fitness.activityservice.dto.ActivityResponse;
 import com.fitness.activityservice.model.Activity;
 import com.fitness.activityservice.repository.ActivityRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,8 +17,7 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ActivityService
-{
+public class ActivityService {
 
     private final ActivityRepository activityRepository;
     private final UserValidationService userValidationService;
@@ -31,11 +28,10 @@ public class ActivityService
     @Value("${rabbitmq.routing.key}")
     private String routingKey;
 
-    public ActivityResponse trackActivity(ActivityRequest request)
-    {
-        boolean isValidUser=userValidationService.validateUser(request.getUserId());
-        if(!isValidUser) throw new RuntimeException("Invalid User: "+request.getUserId());
-        Activity activity=Activity.builder()
+    public ActivityResponse trackActivity(ActivityRequest request) {
+        boolean isValidUser = userValidationService.validateUser(request.getUserId());
+        if (!isValidUser) throw new RuntimeException("Invalid User: " + request.getUserId());
+        Activity activity = Activity.builder()
                 .userId(request.getUserId())
                 .type(request.getType())
                 .duration(request.getDuration())
@@ -44,13 +40,12 @@ public class ActivityService
                 .additionalMetrics(request.getAdditionalMetrics())
                 .build();
 
-        Activity savedActivity=activityRepository.save(activity);
+        Activity savedActivity = activityRepository.save(activity);
         // publish to rabbitmq queue for AI processing
         try {
-            rabbitTemplate.convertAndSend(exchange,routingKey,savedActivity);
-        }
-        catch(Exception e){
-            log.error("Failed to publish activity to rabbitmq",e);
+            rabbitTemplate.convertAndSend(exchange, routingKey, savedActivity);
+        } catch (Exception e) {
+            log.error("Failed to publish activity to rabbitmq", e);
         }
         return mapToActivityResponse(savedActivity);
 
@@ -59,7 +54,7 @@ public class ActivityService
 
     public List<ActivityResponse> getUserActivities(String userId) {
         List<Activity> activities = activityRepository.findByUserId(userId);
-        List<ActivityResponse> responses=new ArrayList<>();
+        List<ActivityResponse> responses = new ArrayList<>();
         return activities.stream()
                 .map(this::mapToActivityResponse)
                 .collect(Collectors.toList());
@@ -69,11 +64,12 @@ public class ActivityService
     public ActivityResponse getUserActivityById(String activityId) {
         return activityRepository.findById(activityId)
                 .map(this::mapToActivityResponse)
-                .orElseThrow(()-> new RuntimeException("Activity not found with is : "+activityId));
+                .orElseThrow(() -> new RuntimeException("Activity not found with is : " + activityId));
 
     }
+
     private ActivityResponse mapToActivityResponse(Activity activity) {
-        ActivityResponse response=new ActivityResponse();
+        ActivityResponse response = new ActivityResponse();
         response.setId(activity.getId());
         response.setUserId(activity.getUserId());
         response.setType(activity.getType());

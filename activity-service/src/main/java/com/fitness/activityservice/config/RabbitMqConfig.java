@@ -23,21 +23,21 @@ public class RabbitMqConfig {
     private String routingKey;
 
 
-
     @Bean
     public Queue activityQueue() {
-        return new Queue(queue,true);
+        return new Queue(queue, true);
     }
 
     @Bean
-    public DirectExchange activityExchange(){
+    public DirectExchange activityExchange() {
         return new DirectExchange(exchange);
     }
+
     @Bean
-    public Binding activityBinding(Queue activityQueue, DirectExchange activityExchange)
-    {
-        return   BindingBuilder.bind(activityQueue).to(activityExchange).with(routingKey);
+    public Binding activityBinding(Queue activityQueue, DirectExchange activityExchange) {
+        return BindingBuilder.bind(activityQueue).to(activityExchange).with(routingKey);
     }
+
     @Bean
     public MessageConverter jsonMessageConverter() {
         return new Jackson2JsonMessageConverter();

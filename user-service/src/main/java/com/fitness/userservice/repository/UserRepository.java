@@ -1,6 +1,5 @@
 package com.fitness.userservice.repository;
 
-import com.fitness.userservice.dto.UserResponse;
 import com.fitness.userservice.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 

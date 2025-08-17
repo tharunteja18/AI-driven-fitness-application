@@ -5,8 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClientException;
-import org.springframework.web.reactive.function.client.WebClientRequestException;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 @Service
@@ -15,9 +13,9 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 public class UserValidationService {
 
     private final WebClient userServiceWebClient;
-    public Boolean validateUser(String userId)
-    {
-        log.info("Calling User Validation API for userId: {}",userId);
+
+    public Boolean validateUser(String userId) {
+        log.info("Calling User Validation API for userId: {}", userId);
         try {
             return userServiceWebClient.get()
                     .uri("/api/users/{userId}/validate", userId)

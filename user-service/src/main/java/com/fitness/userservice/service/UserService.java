@@ -1,17 +1,14 @@
 package com.fitness.userservice.service;
 
-import com.fitness.userservice.repository.UserRepository;
 import com.fitness.userservice.dto.RegisterRequest;
 import com.fitness.userservice.dto.UserResponse;
 import com.fitness.userservice.model.User;
-import lombok.AllArgsConstructor;
+import com.fitness.userservice.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @Slf4j
@@ -20,7 +17,7 @@ public class UserService {
     private UserRepository userRepository;
 
     public ResponseEntity<UserResponse> getUserProfile(String userId) {
-        User user =userRepository.findById(userId).orElseThrow(()-> new RuntimeException("User not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
 
         UserResponse userResponse = new UserResponse();
 
@@ -35,11 +32,9 @@ public class UserService {
     }
 
 
-
     public UserResponse register(RegisterRequest request) {
 
-        if(userRepository.existsByEmail(request.getEmail()))
-        {
+        if (userRepository.existsByEmail(request.getEmail())) {
             throw new RuntimeException("User already exists");
         }
 
@@ -49,7 +44,7 @@ public class UserService {
         user.setFirstname(request.getFirstname());
         user.setLastname(request.getLastname());
 
-        User savedUser =  userRepository.save(user);
+        User savedUser = userRepository.save(user);
 
         UserResponse userResponse = new UserResponse();
 
@@ -65,7 +60,7 @@ public class UserService {
     }
 
     public Boolean exitByUserId(String userId) {
-        log.info("Calling User Validation API for userId: {}",userId);
+        log.info("Calling User Validation API for userId: {}", userId);
         return userRepository.existsById(userId);
     }
 }
