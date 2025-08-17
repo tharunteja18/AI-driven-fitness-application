@@ -25,8 +25,8 @@ This project is a **microservices-based fitness tracking system** built using **
 - **Spring Boot**
 - **Spring Web & WebClient**
 - **Spring AMQP - Advanced Message Queuing protocol (RabbitMQ)**
-
-- **Eureka server** as service discovery
+- **MySQL (Relational Database) & MongoDB (NoSQL Database) for data storage**
+- **Eureka server as service discovery** 
 - **Gradle Build Tool**
 
 ⚠️ This project is currently under active development.
