@@ -1,5 +1,5 @@
 # Using Java runtime environment (base image)
-FROM openjdk:17-jdk-slim
+FROM eclipse-temurin:17-jre
 
 # Giving name for the build time variable (jar file location)
 ARG jar_file=build/libs/*.jar
