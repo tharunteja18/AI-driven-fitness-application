@@ -55,7 +55,7 @@ public class UserService {
         userResponse.setLastname(savedUser.getLastname());
         userResponse.setCreatedAt(savedUser.getCreatedAt());
         userResponse.setUpdatedAt(savedUser.getUpdatedAt());
-
+//        log.info("Successfully registered user: {}", request.getFirstname());
         return userResponse;
     }
 
